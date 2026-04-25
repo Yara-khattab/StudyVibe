@@ -28,7 +28,7 @@
 .register_page .logo,.login_page .logo{
     margin-bottom: 15px;
 }
-.register_page .logo i,.login_page .logo i{
+.logo i{
   background: linear-gradient(to right,#6a00ff, #d400ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
