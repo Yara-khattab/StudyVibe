@@ -28,7 +28,7 @@
 .register_page .logo,.login_page .logo{
     margin-bottom: 15px;
 }
-.register_page .logo i,.login_page .logo i,.home-page .logo i{
+.logo i{
   background: var(--main-linear-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -58,7 +58,7 @@
     margin-top: 15px;
     border: none;
     border-radius: 8px;
-    background:var(--main-linear-gradient);
+    background: linear-gradient(to right,#6a00ff, #d400ff);
     color: white;
     font-weight: bold;
     font-size: 17px;
@@ -78,10 +78,108 @@
   font-weight: 500;
   transition: 0.3s;
 }
-
 .login-text a:hover,.signup-text a:hover {
   text-decoration: underline;
-  color: var(--violet-color);
+  color: #a855f7;
+}
+.game{
+  background: #1A2233;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  font-family: sans-serif;
+  color: #F3F4F6;
+  flex-direction: column;
+  font-family: sans-serif;
+}
+.game #menu{
+  display: grid;
+  grid-template-columns: repeat(2, 150px);
+  gap: 12px;
+  justify-content: center;
+  text-align: center;
+}
+.game button {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+  color: white;
+  font-size: 17px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) 
+}
+.game button:hover{
+transform: scale(1.08);
+filter: brightness(1.1);
+
+}
+.game #timer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
+}
+.game .game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  gap: 15px;
+  margin-top: 20px;
+  user-select: none;
+}
+.game .card {
+  width: 100px;
+  height: 100px;
+  background: #111827;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: transparent;
+  font-size: 30px;
+  cursor: pointer;
+  border: 1px solid #1F2937;
+  transition: 0.3s;
+}
+.card.open,.card.matched {
+  color: white;
+}
+.card.open {
+  background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+  transform: scale(1.05);
+}
+.card.matched {
+  background: #22c55e;
+}
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #212b41;
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid #354253;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  z-index: 101;
+}
+.game .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); 
+    z-index: 100; 
+    display: none;
 }
 .home-page{
     width: 100%;

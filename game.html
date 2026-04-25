@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/all.css">
+</head>
+<body>
+  <section class="game">   
+    <div id="menu">
+      <h2 style="grid-column: span 2; margin-bottom: 10px;">Choose Game Type</h2>
+     <button onclick="startGame('fruits')">Fruits 🍎</button>
+     <button onclick="startGame('animals')">Animals 🐶</button>
+     <button onclick="startGame('emojis')">Emojis 😀</button>
+     <button onclick="startGame('food')">Food 🍕</button>
+     <button onclick="startGame('sports')">Sports ⚽</button>
+     <button onclick="startGame('symbols')">Symbols ⭐</button>
+    </div>
+    <div id="timer"></div>
+    <div class="game-board" id="board"></div>
+    <div id="overlay" class="overlay"></div>
+   </section>
+ <script src="JS/script.js"></script>
+</body>
+</html>
