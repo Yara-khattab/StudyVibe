@@ -196,13 +196,14 @@ filter: brightness(1.1);
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding: 15px 40px;
+    padding: 13px 40px;
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(10px);
     border-radius: 0px; 
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 .home-page .logo{
     font-size: 28px;
@@ -224,6 +225,7 @@ filter: brightness(1.1);
     transition: 0.3s;
     text-decoration: none;
     font-size: 18px;
+    transition: all 1s ease;
 }
 
 .home-page .login-btn:hover,.home-page .register-btn:hover{
@@ -243,7 +245,7 @@ filter: brightness(1.1);
     max-width: 620px;
     font-size: 45px;
     line-height: 1.2;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     margin-top: 60px;
 }
 .home-page .hero-text p{
@@ -253,12 +255,12 @@ filter: brightness(1.1);
     margin-bottom: 55px;
 }
 .home-page .start-btn{
-    padding: 14px 30px;
+    padding: 14px 25px;
     border: none;
     border-radius: 10px;
     background: var(--main-linear-gradient);
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.4s;
@@ -274,19 +276,19 @@ filter: brightness(1.1);
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 150px;
+    margin-top: 170px;
     align-items: center;
 }
 .home-page .feature-box{ 
-    color: #9CA3AF;
-    font-size: 11px;
+    color: #a8abaf;
+    font-size: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .home-page .feature-box i{
-    font-size: 13px;
-    color:#9CA3AF ;
+    font-size: 17px;
+    color:#a8abaf;
     margin-right: 10px;
     display: flex;
     align-items: center;
@@ -295,5 +297,5 @@ filter: brightness(1.1);
 .vertical-divider{
     width: 2px;
     height: 30px;
-    background: #9CA3AF;
+    background: #a8abaf;
 }
