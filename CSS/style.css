@@ -274,12 +274,12 @@ filter: brightness(1.1);
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 125px;
+    margin-top: 150px;
     align-items: center;
 }
 .home-page .feature-box{ 
     color: #9CA3AF;
-    font-size: 9px;
+    font-size: 11px;
     display: flex;
     align-items: center;
     justify-content: center;
