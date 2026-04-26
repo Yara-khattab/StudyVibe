@@ -122,3 +122,8 @@ function resetGame() {
   gameOver = false;
   clearInterval(countdown);
 }
+const closeIcon = document.getElementById('cancel');
+const alertBox = document.querySelector('.alert_finished_game');
+closeIcon.addEventListener('click', () => {
+    alertBox.style.display = 'none'; 
+});
