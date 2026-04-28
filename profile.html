@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - StudyVibe</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/profileCss.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    
+    <aside class="sidebar">
+
+        <h2 class="logo">
+            <i class="fa-solid fa-book-open"></i> StudyVibe
+        </h2>
+
+        <div style="text-align: center; margin-bottom: 30px;">
+            <img src="images/Group4.png">
+            <h3>Maya Yaser</h3>
+        </div>
+
+        <nav class="menu" style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
+
+            <button class="active"
+                style="padding: 12px; border-radius: 10px; background: linear-gradient(90deg, #8E2DE2, #4A00E0); color: white; cursor: pointer;">
+                <i class="fas fa-user"></i> My Profile
+            </button>
+
+            <button onclick="location.href='index.html'"
+                style="padding: 12px; border-radius: 10px; background: linear-gradient(90deg, #8E2DE2, #4A00E0); color: white; cursor: pointer;">
+                <i class="fas fa-home"></i> Home
+            </button>
+
+            <button onclick="location.href='login.html'"
+                style="margin-top: auto; padding: 12px; border-radius: 10px; background: #8E2DE2; color: white; cursor: pointer;">
+                <i class="fas fa-sign-out-alt"></i> Log out
+            </button>
+
+        </nav>
+
+    </aside>
+
+    
+    <main class="Main">
+
+        <header>
+            <h1 style="margin-bottom: 20px;">HELLO, Maya!</h1>
+        </header>
+
+        <div class="dashboard-grid">
+
+            
+            <div class="card">
+                <h3>Weekly Progress</h3>
+                <div class="chart-wrapper">
+                    <canvas id="weeklyChart"></canvas>
+                </div>
+            </div>
+
+            
+            <div class="status-grid">
+
+                <div class="stat-card">
+                    <span>Total focus ⏳</span>
+                    <h2>120 h</h2>
+                </div>
+
+                <div class="stat-card">
+                    <span>Streak 🔥</span>
+                    <h2>12 day</h2>
+                </div>
+
+                <div class="stat-card">
+                    <span>Glow Track</span>
+                    <h2 style="color: #ffaa85;">Blaze 🔥</h2>
+                </div>
+
+                <div class="stat-card">
+                    <span>Sessions 🧠</span>
+                    <h2>45</h2>
+                </div>
+
+            </div>
+
+            
+            <div class="card">
+                <h3>Study Heatmap </h3>
+
+                <div class="heatmap-container">
+
+                    <div class="heatmap-grid" id="heatmap"></div>
+
+                    <div class="heatmap-legend">
+                        <span>Less</span>
+
+                        <div class="legend-box level-0"></div>
+                        <div class="legend-box level-1"></div>
+                        <div class="legend-box level-2"></div>
+                        <div class="legend-box level-3"></div>
+                        <div class="legend-box level-4"></div>
+
+                        <span>More</span>
+                    </div>
+
+                </div>
+            </div>
+
+            
+            <div class="card">
+                <h3>Study Distribution</h3>
+                <div class="chart-wrapper">
+                    <canvas id="distributionChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="JS/profile.js"></script>
+
+</body>
+</html>

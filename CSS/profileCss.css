@@ -1,0 +1,199 @@
+body {
+    background-image: linear-gradient(rgba(15, 17, 26, 0.7), rgba(15, 17, 26, 0.7)),
+        url('../images/background_signup_login.png');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: white;
+    margin: 0;
+    height: 100vh;
+}
+
+* {
+    font-family: Arial, sans-serif;
+}
+
+.logo i {
+    background: linear-gradient(to right, #6a00ff, #d400ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.sidebar {
+    width: 20%;
+    background:rgba(15, 23, 42, 0.8);
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    border-right: 1px solid #23283e;
+    animation: fadeInUp 0.6s ease-out;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.Main {
+    width: 80%;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+
+.menu button {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.menu button:hover {
+    transform: translateX(10px);
+    background: rgba(142, 45, 226, 0.2);
+    border-color: #8E2DE2;
+    font-size: 20px;
+}
+
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    grid-gap: 25px;
+}
+
+
+.card,
+.stat-card {
+    background: rgba(30, 34, 54, 0.6);
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+
+.card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.stat-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+
+.card:hover,
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(142, 45, 226, 0.4);
+}
+
+
+.chart-wrapper {
+    position: relative;
+    height: 200px;
+    width: 100%;
+}
+
+
+.status-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+}
+
+.stat-card {
+    background: rgba(45, 50, 80, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+}
+
+
+.heatmap-container {
+    margin-top: 10px;
+}
+
+.heatmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 30px);
+    gap: 4px;
+}
+
+.day {
+    width: 30px;
+    aspect-ratio: 1;
+    background-color: #1a1d2e;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.day:hover {
+    filter: brightness(1.5);
+    outline: 1px solid #fff;
+}
+
+
+.level-1 {
+    background-color: #0e4429;
+}
+
+.level-2 {
+    background-color: #006d32;
+}
+
+.level-3 {
+    background-color: #26a641;
+}
+
+.level-4 {
+    background-color: #39d353;
+}
+
+
+.heatmap-legend {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #aaa;
+}
+
+.legend-box {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+}
