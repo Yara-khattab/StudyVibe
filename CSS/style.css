@@ -418,10 +418,13 @@ cursor: pointer;
 }
 .join-room .join-container .left-panel{
     width: 30%;
-    background: #0f1428;
+    background: #191f37;
     border-radius: 15px;
-    padding: 20px;
+    padding: 30px;
     color: white;
+    max-height: fit-content;
+    margin: auto;
+    margin-bottom: 20px;
     
 }
 .join-room .join-container .hello-join{
@@ -447,17 +450,53 @@ cursor: pointer;
     height: 3px;
     background: white;
     margin-top:10px ;
-    margin-left: 30px; 
+    margin-left: 25px; 
 }
 .join-room .focus-box{
-    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+   margin-top: 30px;
+   margin-left: 20px;
+   
 }
+
 .join-room .focus-box .focus-item{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
     background: rgba(255, 255, 255, 0.2);
     padding: 10px;
-    margin-top: 20px;
-    border-radius: 8px;  
+    margin-top: 15px;
+    border-radius: 8px; 
+    height: 40px; 
+    width: 220px;
 }
+.join-room .focus-box .focus-item input{
+    display: none;
+}
+.join-room .focus-box .focus-item .checkmark{
+    width: 20px;
+    height: 20px;
+    background: #9ca3af;
+    border-radius: 4px;
+    position: relative;
+    transition: 0.3s;
+}
+.join-room .focus-box .focus-item input:checked + .checkmark{
+    background: #22c55e;
+}
+.join-room .focus-box .focus-item input:checked + .checkmark::after{
+    content: "✔";
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    left: 5px;
+    top: 1px;
+}
+
 .join-room .right-panel{
     width: 70%;
 }
