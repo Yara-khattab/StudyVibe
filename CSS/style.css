@@ -531,7 +531,7 @@ cursor: pointer;
 
 
 /* salma */
-.room-page{
+.rooms-page{
     width: 100%;
     height: 100vh;
     background: url("../images/background_signup_login.png") center/cover no-repeat;
@@ -540,7 +540,7 @@ cursor: pointer;
     font-family: Arial,sans-serif;
 }
 
-.room-sidebar{
+.rooms-sidebar{
     width: 20%;
     height: 100%;
     background-color: rgba(15, 23, 42, 0.8);
@@ -551,32 +551,28 @@ cursor: pointer;
 }
 
 .logo-sidebar{ 
-    height: 30%;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-}
-.room-page.logo{
-    width: 30%;
-    img{
-        width: 50%;
-        height: auto;
-    }
-}
-.logo-text{
-    width: 70%;
+    padding: 25px;
     color: white;
-    font-size: 20px;
-    display: inline-block;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: Arial,sans-serif;
+    margin-top: 20px;
+    margin-left: 10px;
+
+}
+.logo-sidebar i {
+    background: linear-gradient(to right, #6a00ff, #d400ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.room-sidebar-menu{
-    height: 70%;
+.rooms-sidebar-menu{
+    height: 100%;
     display: flex;
     flex-direction: column;
     padding: 30px;
 }
-.room-sidebar-menu ul{
+.rooms-sidebar-menu ul{
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -585,7 +581,7 @@ cursor: pointer;
     gap: 25px;
 }
 
-.room-sidebar-menu li:last-child{
+.rooms-sidebar-menu li:last-child{
     margin-top: auto;
 }
 
@@ -597,8 +593,7 @@ cursor: pointer;
     border-radius: 15px;
     background: linear-gradient(to right,#6a00ff, #d400ff);
     color: white;
-    font-weight: bold;
-    font-size: 20px;
+    font-size: 13px;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -612,7 +607,7 @@ cursor: pointer;
     transition: 0.7s;
 }
 
-.room-body{
+.rooms-body{
     width: 80%;
     height: 100%;
     display: grid;
@@ -631,7 +626,7 @@ cursor: pointer;
 }
 
 .item h1{
-    font-size: 55px;
+    font-size: 45px;
     font-weight: bold;
     font-family: Georgia, serif;
 }  
@@ -643,22 +638,35 @@ cursor: pointer;
     
 }
 
-.room-body .item:nth-child(1){
+.rooms-body .item:nth-child(1){
     grid-column: 1 / 3;
     text-align: center;
 }
 
-.room-body .item:nth-child(2),
-.room-body .item:nth-child(3){
+.rooms-body .item:nth-child(2),
+.rooms-body .item:nth-child(3){
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.room-body .item:nth-child(4),
-.room-body .item:nth-child(5){
+.rooms-body .item:nth-child(4),
+.rooms-body .item:nth-child(5){
     font-size: 25px;
     line-height: 1.6;
     padding: 0 40px;
     margin-left: 5%;
+    margin-bottom: 5%;
+}
+
+.rooms-footer{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    position: absolute;
+    bottom: 20px;
+    left: 20%;
+    color: #a8abaf;
 }
