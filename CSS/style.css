@@ -566,7 +566,7 @@ cursor: pointer;
     display: flex;
     align-items: center;
 }
-.logo{
+.room-page.logo{
     width: 30%;
     img{
         width: 50%;
