@@ -396,17 +396,7 @@ cursor: pointer;
     font-family: Arial,sans-serif;
     position: relative;
 }
-.join-room .close-btn{
-    position: absolute;
-    top: 70px;
-    right: 100px;
-    width: 30px;
-    height: 30px;
-    color: #D2D2D2;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-}
+
 .join-room .join-container{
     width: 85%;
     height: 80%;
