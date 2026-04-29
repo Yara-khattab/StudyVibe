@@ -994,3 +994,32 @@ cursor: pointer;
     left: 20%;
     color: #a8abaf;
 }
+
+/* create - room - page */
+
+.createroom-page {
+    width: 100%;
+    height: 100vh;
+    background: url("../images/background_signup_login.png") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.createroom-page .bg-glass {
+    background: rgba(15, 23, 42, 0.644);
+    padding: 40px;
+    width: 70%;
+    height: 90%;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+
+}
+.createroom-page .bg-glass i {
+    background: linear-gradient(to right,#6a00ff, #d400ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
