@@ -1,48 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Room</title>
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/createroom.css">
     <link rel="stylesheet" href="CSS/all.css">
 </head>
+
 <body>
     <main class="createroom-page">
-      <div class="bg-glass">
-        <h1> <i class="fa-solid fa-book-open"></i> Create New Study Room</h1>
-        <form>
-            <div class="input-box">
-                <h4>Room Name</h4>
-                <input type="text" placeholder="Room Name">
-            </div>
-           
-            <div class="input-box">
-                <h4>Topic</h4>
-                <input type="text" placeholder="Topic">
-            </div>
-           
-            <div class="input-box">
-                <h4>Max Participants</h4>
-                <h4>2-20</h4>
-                <input type="range" min="2" max="20" placeholder="Max Participants">
-            </div>
-            <div class="input-box">
-                <h4>Study Time</h4>
-                <input type="text" placeholder="Study Time">
-            </div>
-            <div class="input-box">
-                <h4>Break Time</h4>
-                <input type="text" placeholder="Break Time">
-            </div>
-            <div>
-                <h4>Privacy Setting</h4>
-                <select>
-                    
-                </select>
-            </div>
-        </form>
-      </div>
+        <div class="bg-glass">
+            <h1> <i class="fa-solid fa-book-open"></i> Create New Study Room</h1>
+            <form>
+                <div class="input-box">
+                    <h4>Room Name</h4>
+                    <input type="text" placeholder="Room Name" required>
+                </div>
+
+                <div class="input-box">
+                    <h4>Topic</h4>
+                    <input type="text" placeholder="Topic" required>
+                </div>
+
+                <div class="input-box">
+                    <div class="participants-header">
+                        <h4>Max Participants</h4>
+                        <h4>2-20</h4>
+                    </div>
+                    <input type="range" min="2" max="20" placeholder="Max Participants" required>
+                </div>
+                <div class="row-inputs">
+                    <div class="input-box">
+                        <h4>Study Time</h4>
+                        <input type="text" placeholder="25 min" required>
+                    </div>
+                    <div class="input-box">
+                        <h4>Break Time</h4>
+                        <input type="text" placeholder="5 min" required >
+                    </div>
+                </div>
+                <div class="privacy-container">
+                    <label class="privacy-card" onclick="toggleAccessCode(true)">
+                        <input type="radio" name="privacy" value="private" required >
+                        <div class="card-header">
+                            <i class="fas fa-lock"></i>
+                            <span>Private</span>
+                        </div>
+                        <p>Require access code</p>
+                    </label>
+
+                    <label class="privacy-card" onclick="toggleAccessCode(false)">
+                        <input type="radio" name="privacy" value="public" required>
+                        <div class="card-header">
+                            <i class="fas fa-globe"></i>
+                            <span>Public</span>
+                        </div>
+                        <p>Appear to everyone</p>
+                    </label>
+                </div>
+
+                <div class="input-box" id="accessCodeSection" style="margin-top: 20px;">
+                    <h4>Access code</h4>
+                    <input type="text" placeholder="[xxxx-xxxx-xxxx]" required>
+                </div>
+
+                <div class="submit-container">
+                    <button type="submit" class="create-btn"> Create Room <i class="fas fa-plus"></i> </button>
+                </div>
+            </form>
+        </div>
     </main>
+
+
+    <script>
+    function toggleAccessCode(isPrivate) {
+        const section = document.getElementById('accessCodeSection');
+        if (isPrivate) {
+            section.style.display = 'block';
+        } else {
+            section.style.display = 'none';
+        }
+    }
+
+    window.onload = () => {
+        document.getElementById('accessCodeSection').style.display = 'none';
+    };
+
+</script>
 </body>
+
 </html>

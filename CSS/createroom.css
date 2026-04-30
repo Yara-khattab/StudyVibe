@@ -1,0 +1,148 @@
+
+/* create - room - page */
+
+.createroom-page {
+    width: 100%;
+    height: 100vh;
+    background: url("../images/background_signup_login.png") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+
+.createroom-page .bg-glass {
+    background: rgba(15, 23, 42, 0.644);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    width: 70%;
+    height: 95%;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+
+}
+.createroom-page .bg-glass i {
+    background: linear-gradient(to right,#6a00ff, #d400ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.createroom-page .bg-glass h4 {
+   text-align: left;
+   padding: 10px;
+}
+
+.createroom-page .input-box input {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    outline: none;
+}
+
+.createroom-page .participants-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.createroom-page input[type="range"] {
+    width: 100%;
+    accent-color: #ff8c00;
+}
+
+
+.createroom-page .row-inputs {
+    display: flex;
+    gap: 20px; 
+}
+.createroom-page .row-inputs .input-box {
+    flex: 1; 
+}
+
+.createroom-page .privacy-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.createroom-page .privacy-card {
+    flex: 1; 
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.privacy-card i {
+    font-size: 1rem;
+}
+
+.createroom-page .privacy-card span {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.createroom-page .privacy-card p {
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+.createroom-page .privacy-card .card-header {
+    display: flex;
+    align-items: center; 
+    gap: 10px;
+    margin-bottom: 5px;
+}
+.createroom-page .privacy-card:active {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #d400ff;
+} 
+
+.privacy-card:has(input[type="radio"]:checked) {
+    border: 2px solid #ff8c00; 
+    background: rgba(255, 140, 0, 0.1); 
+}
+
+.createroom-page input[type="radio"] {
+    display: none;
+}
+
+.create-btn {
+    background: linear-gradient(to right, #6a00ff, #d400ff);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center; 
+    width: fit-content;
+} 
+
+.submit-container {
+    display: flex;
+    justify-content: center; 
+    margin-top: 30px;
+}
+
+.submit-container .create-btn i {
+    font-size: 1.2rem;
+    color: white;
+}
+
+
+
