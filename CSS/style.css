@@ -143,7 +143,8 @@
 .break-card {
     position: relative;
     z-index: 10;
-    width: 450px; 
+    width: 700px; 
+    height: 400px;
     background-color: #1e2b4d; 
     border-radius: 12px;
     overflow: hidden;
@@ -162,17 +163,24 @@
 .break-header h2 { color: white; margin: 0; font-size: 22px; }
 
 .break-content {
-    padding: 30px 20px;
+    padding: 25px 20px;
     text-align: center;
     color: white;
 }
 
-.instruction-text { font-size: 14px; color: #cbd5e1; margin-bottom: 20px; }
+.instruction-text {
+     font-size: 17px;
+      color: #cbd5e1; 
+      margin-bottom: 20px;
+      font-weight:bold; 
+ }
 
 .game-container {
     background-color: #354876;
     padding: 25px;
     border-radius: 10px;
+    width: 60%;
+    margin: auto;
     margin-bottom: 20px;
 }
 
@@ -180,7 +188,7 @@
 .game-container p { 
     margin-top: -10px; 
     margin-bottom: 15px; 
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 500;
 }
 
@@ -189,9 +197,10 @@
     background-color: #44a047;
     color: white !important;
     text-decoration: none;
-    padding: 10px 35px;
+    padding: 10px 30px;
     border-radius: 6px;
     font-weight: bold;
+    font-size: 18px;
     transition: all 0.3s ease;
 }
 
@@ -201,10 +210,12 @@
     box-shadow: 0 5px 15px rgba(68, 160, 71, 0.4);
 }
 
-.timer-text { font-size: 14px; color: #cbd5e1; }
+.timer-text { 
+    font-size: 17px;
+     color: #cbd5e1;
+ }
 
 .break-footer {
-    padding-bottom: 30px;
     text-align: center;
 }
 
@@ -213,9 +224,10 @@
     background: linear-gradient(to bottom, #4a5c88, #364977);
     color: white !important;
     text-decoration: none;
-    padding: 12px 50px;
+    padding: 12px 40px;
     border-radius: 8px;
     font-weight: bold;
+    font-size: 19px;
     border: 1px solid #2d3e6b;
     transition: all 0.3s ease;
 }
@@ -225,25 +237,6 @@
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 
 .rk-body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
