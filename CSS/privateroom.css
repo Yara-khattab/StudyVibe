@@ -1,0 +1,143 @@
+.private-room{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../images/background_signup_login.png) no-repeat center / cover;
+    padding: 20px;
+}
+.private-room .study-room{
+    width: 88%;
+    max-width: 1000px;
+    height: 95vh;
+    padding: 20px 30px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter:blur(18px);
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+.private-room .room-content{
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    justify-content: space-between;
+}
+.private-room .left-panel{
+    width:320px;
+    padding:28px 24px;
+    border-radius:22px;
+    background:rgb(25, 31, 55);
+    
+    margin-top: 40px;
+}
+.private-room .right-card{
+    width: 450px;
+    padding: 20px 30px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    color: white;
+}
+.private-room .right-card h3{
+    font-size: 24px;
+    margin-bottom: 15px;
+    justify-content: center;
+    display: flex;
+}
+.private-room .study-preview{
+   width: 100%;
+    height: 200px;
+    background: url("../images/room.png") center/cover no-repeat;
+    border-radius: 18px;
+    margin: auto;
+}
+.private-room .focus-box{
+    margin-top:25px;
+    margin-left:0;
+}
+
+.private-room .focus-box h3{
+    margin-bottom:12px;
+    font-size:20px;
+    margin-left: 30px;
+}
+.private-room .focus-item{
+    width:90% ;
+    height:48px !;
+    font-size:17px !important;
+    margin-left: 30px;
+}
+.private-room .partner{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+   
+}
+.private-room .leave-room{
+    display: flex;
+    justify-content: space-between;
+}
+.private-room .partner-avatar{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+   border-radius: 50%; 
+}
+.private-room .meta{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: white;
+    font-weight: 500;
+}
+.private-room .progress{
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+.private-room .progress-fill{
+    width: 65%;
+    height: 100%;
+    background: white;
+    border-radius: 10px;
+}
+.private-room .timer{
+    font-size: 22px;
+    font-weight: bold;
+    color: white;  
+}
+.private-room .leave-btn{
+    border: none;
+    padding: 12px 24px;
+    border-radius: 14px;
+    background: var(--main-linear-gradient);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 100px;  
+}
+.private-room .meta .text-study{
+    border: 1px solid #fdd04a;
+    background: transparent;
+    color : #eab308;
+    padding: 7px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600; 
+}
+
+
+
+
