@@ -44,36 +44,35 @@ $_SESSION['current_room_code'] = $room_code;
     <link rel="stylesheet" href="CSS/private_room.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
+    /* تنسيق التاسك زي الجوين */
 .focus-item {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.05); /* شفافية بسيطة */
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 10px;
     transition: 0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .focus-item:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
+/* ستايل نص التاسك */
 .task-text {
     flex-grow: 1;
     color: white;
     font-size: 14px;
     transition: 0.3s;
-    word-break: break-word;
 }
 
 .remove-task {
     color: #ff4d4d;
     cursor: pointer;
     font-size: 14px;
-    opacity: 0.6;
+    opacity: 0;
     transition: 0.3s;
-    margin-left: 10px;
 }
 
 .remove-task:hover {
@@ -162,25 +161,20 @@ const totalStudyMins = <?php echo (int)($room['study_duration'] ?? 30); ?>;
 const breakSection = document.querySelector('.break-body');
 const breakTimerDisplay = document.getElementById('break-timer-popup');
 const timerElement = document.getElementById('session-timer');
-
-// مفتاح التخزين الخاص بالمهام (مرتبط بكود الغرفة لضمان الاستقلالية)
-const taskStorageKey = 'userTasks_' + roomCode;
-
 let rawTime = localStorage.getItem('studyTimeLeft_' + roomCode);
 let timeLeft = (rawTime && !isNaN(rawTime)) ? parseInt(rawTime) : totalStudyMins * 60;
 let breakCounter = 0; 
 const breakThreshold = breakEveryMins * 60; 
-
 function goToRoom() {
+    // بدل ما نلف وندور على localStorage، نستخدم الـ roomCode اللي معانا أصلاً
     if (roomCode && roomCode !== "null" && roomCode !== "") {
         window.location.href = `private_room.php?code=${roomCode}`;
     } else {
         window.location.href = `join.php`;
     }
 }
-
 function mainLogic() {
-    if (document.body.classList.contains('on-break')) return; 
+    if (document.body.classList.contains('on-break')) return; // لو في بريك وقف كل حاجة
     if (timeLeft <= 0) {
         saveSessionToDatabase();
         return;
@@ -224,14 +218,11 @@ function showBreakNow() {
         }
     }, 1000);
 }
-
 function closeBreak() {
     document.body.classList.remove('on-break');
-    breakSection.style.setProperty('display', 'none', 'important');
+      breakSection.style.setProperty('display', 'none', 'important');
 }
-
 setInterval(mainLogic, 1000);
-
 function saveSessionToDatabase() {
     localStorage.removeItem('studyTimeLeft_' + roomCode);
     location.href = 'join.php?status=finished';
@@ -241,69 +232,68 @@ function clearStorageAndLeave() {
     localStorage.removeItem('studyTimeLeft_' + roomCode);
     location.href='join.php';
 }
-
-// --- قسم Today's Focus المستقل ---
-const tasksList = document.getElementById('tasks-list');
+    const tasksList = document.getElementById('tasks-list');
 const addTaskBtn = document.getElementById('add-task-btn');
 
-document.addEventListener('DOMContentLoaded', loadTasks);
+    // تحميل التاسكات أول ما الصفحة تفتح
+    document.addEventListener('DOMContentLoaded', loadTasks);
 
-function loadTasks() {
-    const savedTasks = JSON.parse(localStorage.getItem(taskStorageKey)) || [];
-    tasksList.innerHTML = '';
-    savedTasks.forEach(task => createTaskElement(task.text, task.completed));
-}
-
-addTaskBtn.onclick = function() {
-    const taskName = prompt("What is your focus task for today?");
-    if (taskName !== null && taskName.trim() !== "") {
-        createTaskElement(taskName.trim());
-        saveTasks();
+    function loadTasks() {
+        const savedTasks = JSON.parse(localStorage.getItem('userTasks')) || [];
+        tasksList.innerHTML = '';
+        savedTasks.forEach(task => createTaskElement(task.text, task.completed));
     }
-};
 
+    // لما نضغط على زرار الزائد
+    addTaskBtn.onclick = function() {
+        const taskName = prompt("What is your focus task for today?");
+        
+        if (taskName !== null && taskName.trim() !== "") {
+            createTaskElement(taskName.trim());
+            saveTasks();
+        }
+    };
+
+    // دالة إنشاء عنصر التاسك في الـ DOM
 function createTaskElement(text, completed = false) {
     const label = document.createElement('label');
     label.className = 'focus-item';
     
-    const textStyle = completed ? 'text-decoration: line-through; opacity: 0.6;' : '';
-    
+    // الهيكلة دي مطابقة تماماً لسكشن الجوين اللي بعتيه
     label.innerHTML = `
         <div style="display: flex; align-items: center; gap: 10px; width: 100%;">
             <input type="checkbox" ${completed ? 'checked' : ''} onchange="toggleTask(this)" style="cursor:pointer;">
-            <span class="task-text" style="${textStyle}">${text}</span>
+            <span class="checkmark"></span>
+            <span class="task-text">${text}</span>
             <i class="fa-solid fa-trash-can remove-task" onclick="removeTask(this)"></i>
         </div>
     `;
+
     tasksList.appendChild(label);
 }
 
+// دالة لتحسين شكل النص عند الضغط على الـ checkbox
 function toggleTask(checkbox) {
-    const taskText = checkbox.nextElementSibling;
-    if (checkbox.checked) {
-        taskText.style.textDecoration = 'line-through';
-        taskText.style.opacity = '0.6';
-    } else {
-        taskText.style.textDecoration = 'none';
-        taskText.style.opacity = '1';
-    }
-    saveTasks();
+    const taskText = checkbox.parentElement.querySelector('.task-text');
+    saveTasks(); // حفظ الحالة الجديدة
 }
 
+// دالة الحذف (تأكدي إنها موجودة عندك)
 function removeTask(element) {
     element.closest('.focus-item').remove();
     saveTasks();
 }
 
-function saveTasks() {
-    const tasks = [];
-    document.querySelectorAll('.focus-item').forEach(item => {
-        const text = item.querySelector('.task-text').innerText;
-        const completed = item.querySelector('input[type="checkbox"]').checked;
-        tasks.push({ text, completed });
-    });
-    localStorage.setItem(taskStorageKey, JSON.stringify(tasks));
-}
+    // دالة حفظ التاسكات في المتصفح
+    function saveTasks() {
+        const tasks = [];
+        document.querySelectorAll('.focus-item').forEach(item => {
+            const text = item.querySelector('.task-text').innerText;
+            const completed = item.querySelector('input[type="checkbox"]').checked;
+            tasks.push({ text, completed });
+        });
+        localStorage.setItem('userTasks', JSON.stringify(tasks));
+    }
 </script>  
 </body>
 </html>
