@@ -9,21 +9,15 @@ if(!isset($_SESSION['user_name']) || !isset($_SESSION['user_email'])){
 
 $email = $_SESSION['user_email'];
 $user_name = $_SESSION['user_name'];
-
-// جلب بيانات المستخدم
 $user_query = $conn->prepare("SELECT id, profile_pic FROM users WHERE email = ?");
 $user_query->bind_param("s", $email);
 $user_query->execute();
 $user_data = $user_query->get_result()->fetch_assoc();
 $user_id = $user_data['id'];
 $user_image = $user_data['profile_pic'];
-
-// حساب إجمالي الساعات
 $res_total = $conn->query("SELECT SUM(duration_minutes) as total FROM study_sessions WHERE user_id = '$user_id'");
 $total_minutes = $res_total->fetch_assoc()['total'] ?? 0;
 $total_hours_display = round($total_minutes / 60, 1);
-
-// منطق الـ Status
 if ($total_hours_display >= 50) {
     $status_text = "Blaze 🔥"; $status_color = "#ff4500"; 
 } elseif ($total_hours_display >= 10) {
@@ -31,8 +25,6 @@ if ($total_hours_display >= 50) {
 } else {
     $status_text = "Spark ✨"; $status_color = "#00d4ff"; 
 }
-
-// حساب الـ Streak
 $streak_query = $conn->query("SELECT DISTINCT study_date FROM study_sessions WHERE user_id = '$user_id' ORDER BY study_date DESC");
 $dates = [];
 while($row = $streak_query->fetch_assoc()) { $dates[] = $row['study_date']; }
@@ -54,7 +46,6 @@ if (count($dates) > 0) {
     }
 }
 
-// الـ Weekly Progress
 $weekly_hours = [];
 $day_labels = [];
 for ($i = 6; $i >= 0; $i--) {
@@ -65,10 +56,6 @@ for ($i = 6; $i >= 0; $i--) {
     $weekly_hours[] = round(($check->fetch_assoc()['daily'] ?? 0) / 60, 1);
     $day_labels[] = $day_name;
 }
-
-// --- الجزء المطلوب تعديله: جلب توزيع المواد (Study Distribution) ---
-// بنعمل LEFT JOIN عشان لو مفيش غرفة برضه الجلسة تظهر، وبنستخدم IFNULL عشان ندي اسم للمادة لو فاضية
-// الاستعلام لربط الجدولين وجلب المواد
 $subject_sql = "SELECT r.topic, SUM(s.duration_minutes) as sub_total 
                 FROM study_sessions s 
                 JOIN rooms r ON s.room_id = r.id 
@@ -81,8 +68,6 @@ $subject_data = [];
 
 while($row = $subject_query->fetch_assoc()){
     if($row['sub_total'] > 0){
-        // هنا بنصلح مشكلة الـ '0' اللي في الداتا بيز عندك
-        // لو التوبيك قيمته '0' أو فاضي، سميه 'General Study' عشان يظهر حلو في التشارت
         $name = ($row['topic'] === '0' || empty($row['topic'])) ? 'General Study' : $row['topic'];
         
         $subject_labels[] = $name;
@@ -220,8 +205,6 @@ new Chart(document.getElementById('weeklyChart'), {
         plugins: { legend: { display: false } }
     }
 });
-
-// --- الدونات تشارت (التي طلبتم تعديلها) ---
 const hasData = <?php echo (array_sum($subject_data) > 0) ? 'true' : 'false'; ?>;
 new Chart(document.getElementById('distributionChart'), {
     type: 'doughnut',
@@ -257,16 +240,10 @@ new Chart(document.getElementById('distributionChart'), {
         } 
     }
 });
-
-// Heatmap logic
-// Heatmap logic - الرأسي (GitHub Style)
 const grid = document.getElementById('heatmapGrid');
 const hData = <?php echo json_encode($heatmap_data); ?>;
-
-// عشان الترتيب الرأسي يطلع صح، لازم نحسب عدد الأيام بحيث نكمل الأسبوع الأخير
-const totalDaysToShow = 126; // رقم يقبل القسمة على 7 (18 أسبوع)
-
-for (let i = totalDaysToShow - 1; i >= 0; i--) {
+const totalDaysToShow = 126; 
+    for (let i = totalDaysToShow - 1; i >= 0; i--) {
     const d = new Date(); 
     d.setDate(d.getDate() - i);
     const dateStr = d.toISOString().split('T')[0];
@@ -280,12 +257,9 @@ for (let i = totalDaysToShow - 1; i >= 0; i--) {
     else if (m > 30) box.classList.add('level-2');
     else if (m > 0) box.classList.add('level-1');
     else box.classList.add('level-0');
-    
-    // إضافة اليوم كـ title عشان يظهر لما تقفي عليه بالماوس
     box.title = `${dateStr}: ${m} mins`;
     grid.appendChild(box);
 }
-// Profile Pic Functions
 document.getElementById('imageUpload').addEventListener('change', function() {
     let formData = new FormData();
     formData.append('profile_pic', this.files[0]);
