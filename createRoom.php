@@ -1,8 +1,6 @@
 <?php
 include "db.php";
 session_start();
-
-// إظهار الأخطاء للتأكد من سلامة الربط
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -18,8 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $room_name   = $_POST['room_name'] ?? '';
     $topic       = $_POST['topic'] ?? ''; 
     $privacy     = $_POST['privacy'] ?? 'public';
-    
-    // إذا كانت الغرفة Private، نجعل الحد الأقصى 1 تلقائياً
     $max_users   = ($privacy === 'private') ? 1 : (int)($_POST['max_users'] ?? 10);
     
     $study_time  = (int)($_POST['study_time'] ?? 25);
@@ -40,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        // sssiiiiis -> الـ topic هو الحرف التالت (s)
         $stmt->bind_param("sssiiiiis", 
             $room_name, 
             $room_code, 
