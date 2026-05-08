@@ -91,6 +91,7 @@
     cursor: pointer;
     transition: 0.3s;
 }
+
 .register_page button:hover,.login_page button:hover{
     opacity: 0.8;
 }
@@ -320,7 +321,16 @@
     background: rgb(105, 104, 104); 
     border-radius: 10px;
 }
-
+.rk-leave-btn {
+    background: linear-gradient(to right,#6a00ff, #d400ff);
+    border: none;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
 .rk-msg-row { display: flex; gap: 15px; align-items: flex-start; }
 
 .rk-indicator {
@@ -425,16 +435,7 @@
 .rk-icons-group i { cursor: pointer; font-size: 20px; transition: 0.3s; }
 .rk-icons-group i:hover { color: white; transform: translateY(-3px); }
 
-.rk-leave-btn {
-    background: linear-gradient(90deg, #9333ea, #ec4899);
-    border: none;
-    color: white;
-    padding: 12px 28px;
-    border-radius: 18px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-}
+
 
 .rk-leave-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(236, 72, 153, 0.3); }
 
