@@ -1,6 +1,4 @@
 
-
-/* rooms page*/
 .rooms-page{
     width: 100%;
     height: 100vh;
@@ -105,6 +103,8 @@
     width: 50%;
     height: 50px;
     margin-right: 25%;
+    font-size:20px;
+    font-family:bold;
     
 }
 

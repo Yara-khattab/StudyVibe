@@ -1,29 +1,53 @@
-
 /* create - room - page */
 
 .createroom-page {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background: url("../images/background_signup_login.png") center/cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
+    padding: 20px 0;
 }
-
 
 .createroom-page .bg-glass {
     background: rgba(15, 23, 42, 0.644);
     backdrop-filter: blur(10px);
-    padding: 40px;
+    padding: 30px 40px; 
     width: 70%;
-    height: auto;
+    max-height: 88vh;   
+    overflow-y: auto;   
+    overflow-x: hidden; 
+    padding-right: 25px; 
     border-radius: 15px;
     text-align: center;
     color: white;
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
-
+    transition: all 0.3s ease-in-out;
 }
+
+.createroom-page .bg-glass::-webkit-scrollbar {
+    width: 8px; 
+}
+
+.createroom-page .bg-glass::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 15px 0;
+}
+
+.createroom-page .bg-glass::-webkit-scrollbar-thumb {
+    background-color: #474a5d;
+    border-radius: 10px;
+    /* بيعمل مسافة وهمية بين السكرو والحافة */
+    border: 4px solid transparent;
+    background-clip: padding-box;
+}
+
+.createroom-page .bg-glass::-webkit-scrollbar-thumb:hover {
+    background-color: #5a5e75;
+}
+
 .createroom-page .bg-glass i {
     background: linear-gradient(to right,#6a00ff, #d400ff);
     -webkit-background-clip: text;
@@ -35,6 +59,10 @@
    padding: 10px;
 }
 
+.createroom-page .input-box {
+    margin-bottom: 10px;
+}
+
 .createroom-page .input-box input {
     width: 100%;
     padding: 10px;
@@ -43,6 +71,11 @@
     border-radius: 8px;
     color: white;
     outline: none;
+}
+
+
+#participants-section {
+    transition: opacity 0.3s ease;
 }
 
 .createroom-page .participants-header{
@@ -56,11 +89,11 @@
     accent-color: #ff8c00;
 }
 
-
 .createroom-page .row-inputs {
     display: flex;
     gap: 20px; 
 }
+
 .createroom-page .row-inputs .input-box {
     flex: 1; 
 }
@@ -97,20 +130,18 @@
     font-size: 0.7rem;
     opacity: 0.7;
 }
+
 .createroom-page .privacy-card .card-header {
     display: flex;
     align-items: center; 
     gap: 10px;
     margin-bottom: 5px;
 }
-.createroom-page .privacy-card:active {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: #d400ff;
-} 
+
 
 .privacy-card:has(input[type="radio"]:checked) {
-    border: 2px solid #ff8c00; 
-    background: rgba(255, 140, 0, 0.1); 
+    border: 2px solid #ff8c00 !important; 
+    background: rgba(255, 140, 0, 0.1) !important; 
 }
 
 .createroom-page input[type="radio"] {
@@ -131,18 +162,16 @@
     margin-top: 10px;
     justify-content: center; 
     width: fit-content;
+    transition: 0.3s;
 } 
+
+.create-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(212, 0, 255, 0.4);
+}
 
 .submit-container {
     display: flex;
     justify-content: center; 
     margin-top: 30px;
 }
-
-.submit-container .create-btn i {
-    font-size: 1.2rem;
-    color: white;
-}
-
-
-

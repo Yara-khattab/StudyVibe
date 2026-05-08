@@ -135,10 +135,13 @@ function startTimer() {
   }, 1000);
 }
 function goToRoom() {
+    // استرجاع الكود من localStorage اللي إحنا خزنّاه في أول السكريبت
     const savedCode = localStorage.getItem('savedRoomCode');
     localStorage.removeItem('breakRemaining'); 
+
     if (savedCode && savedCode !== "null" && savedCode !== "") {
-        window.location.href = `room.php?code=${savedCode}`;
+        // التعديل هنا: نغير room.php لـ private_room.php
+        window.location.href = `private_room.php?code=${savedCode}`;
     } else {
         window.location.href = `join.php`;
     }
