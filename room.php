@@ -1,8 +1,6 @@
 <?php
 include "db.php";
 session_start();
-
-// 1. التأكد من وجود البيانات الأساسية
 if(!isset($_SESSION['user_id']) || !isset($_GET['code'])){
     header("Location: join.php");
     exit();
@@ -10,11 +8,7 @@ if(!isset($_SESSION['user_id']) || !isset($_GET['code'])){
 
 $room_code = $conn->real_escape_string($_GET['code']);
 $user_id = $_SESSION['user_id'];
-
-// 2. تحديث النشاط (عشان الأيقونات تظهر لايف)
 $conn->query("UPDATE room_member SET last_activity = NOW() WHERE user_id = '$user_id'");
-
-// 3. جلب بيانات الغرفة
 $sql = "SELECT * FROM rooms WHERE room_code = '$room_code'";        
 $res = $conn->query($sql);
 $room = $res->fetch_assoc();
@@ -22,8 +16,6 @@ $room = $res->fetch_assoc();
 if(!$room){
     die("Room not found!");
 }
-
-// 4. التأكد من العضوية (لو مش موجود يدخله)
 $check_me = $conn->query("SELECT * FROM room_member WHERE room_id = '{$room['id']}' AND user_id = '$user_id'");
 if($check_me->num_rows == 0){
     $conn->query("INSERT INTO room_member (room_id, user_id, joined_at, last_activity) VALUES ('{$room['id']}', '$user_id', NOW(), NOW())");
@@ -109,24 +101,19 @@ $current_count = $conn->query("SELECT COUNT(*) as current FROM room_member WHERE
 </section>
 
 <script>
-// --- إعدادات التايمر (منطق البرايفت روم) ---
 const roomCode = "<?php echo $room_code; ?>";
 const room_id = <?php echo $room['id']; ?>;
 const totalDuration = <?php echo ($room['study_duration'] * 60); ?>;
 const breakInterval = <?php echo ($room['break_every'] * 60); ?>;
 const breakDuration = <?php echo ($room['break_duration'] * 60); ?>;
 
-// جلب الوقت من المتصفح أو البدء من جديد
 let rawTime = localStorage.getItem('studyTimeLeft_' + roomCode);
 let timeLeft = (rawTime && !isNaN(rawTime)) ? parseInt(rawTime) : totalDuration;
 
 let secondsSinceLastBreak = 0;
 let isOnBreak = false;
-
-// 1. العداد الأساسي
 const countdown = setInterval(() => {
-    if(isOnBreak) return; // تجميد الوقت تماماً في البريك
-
+    if(isOnBreak) return; 
     if(timeLeft <= 0){
         clearInterval(countdown);
         finishSession();
@@ -135,13 +122,9 @@ const countdown = setInterval(() => {
 
     timeLeft--;
     secondsSinceLastBreak++; 
-    localStorage.setItem('studyTimeLeft_' + roomCode, timeLeft); // حفظ الوقت كل ثانية
-
-    // تحديث الشكل
+    localStorage.setItem('studyTimeLeft_' + roomCode, timeLeft); 
     updateTimerDisplay(timeLeft);
-    
-    // فحص وقت البريك
-    if(secondsSinceLastBreak >= breakInterval){
+     if(secondsSinceLastBreak >= breakInterval){
         startBreakSession();
     }
 }, 1000);
@@ -156,8 +139,6 @@ function updateTimerDisplay(seconds) {
     let percentage = ((totalDuration - seconds) / totalDuration) * 100;
     document.getElementById('progress-bar').style.width = percentage + "%";
 }
-
-// 2. منطق البريك
 function startBreakSession(){
     isOnBreak = true;
     document.querySelector('.break-body').style.display = 'flex';
@@ -202,8 +183,6 @@ function leaveRoom() {
     localStorage.removeItem('studyTimeLeft_' + roomCode);
     window.location.href = "join.php";
 }
-
-// 4. الأيقونات والدردشة (لايف)
 function refreshParticipants() {
     fetch(`fetch_participants.php?room_id=${room_id}`)
     .then(res => res.json())
@@ -232,17 +211,11 @@ function loadMessages(){
         chatBox.innerHTML = data;
     });
 }
-
-// التحديث الدوري
 setInterval(refreshParticipants, 5000);
 setInterval(loadMessages, 2000);
 setInterval(() => fetch(`update_activity.php?room_id=${room_id}`), 10000);
-
-// تشغيل أولي
 refreshParticipants();
 loadMessages();
-
-// إرسال الرسائل
 document.getElementById('send-btn').addEventListener('click', () => {
     const msgInput = document.getElementById('msg-input');
     const msg = msgInput.value.trim();

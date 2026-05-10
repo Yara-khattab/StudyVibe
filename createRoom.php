@@ -29,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_data = $user_res->fetch_assoc();
     $host_id = $user_data['id'];
 
-    // الترتيب الصحيح حسب صورة الـ Database: room_name, room_code, topic
     $sql = "INSERT INTO rooms (room_name, room_code, topic, max_participants, host_id, study_duration, break_every, break_duration, privacy) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
     
