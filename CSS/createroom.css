@@ -27,6 +27,27 @@
     transition: all 0.3s ease-in-out;
 }
 
+.exit-icon {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 24px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+
+.exit-icon i {
+    color: white;
+    -webkit-text-fill-color: initial !important;
+}
+
+.exit-icon:hover i {
+    color: #ff4b2b;
+    transform: scale(1.2) rotate(90deg);
+}
+
 .createroom-page .bg-glass::-webkit-scrollbar {
     width: 8px; 
 }
@@ -39,7 +60,7 @@
 .createroom-page .bg-glass::-webkit-scrollbar-thumb {
     background-color: #474a5d;
     border-radius: 10px;
-    /* بيعمل مسافة وهمية بين السكرو والحافة */
+    
     border: 4px solid transparent;
     background-clip: padding-box;
 }
@@ -174,4 +195,54 @@
     display: flex;
     justify-content: center; 
     margin-top: 30px;
+}
+
+
+@media (max-width: 768px) {
+    
+    .createroom-page .bg-glass {
+        width: 90%; 
+        padding: 20px;
+        max-height: 95vh;
+    }
+
+    .createroom-page .bg-glass h1 {
+        font-size: 1.5rem;
+    }
+
+   
+    .createroom-page .row-inputs {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    
+    .createroom-page .privacy-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .createroom-page .privacy-card {
+        width: 100%; 
+    }
+
+    .createroom-page .start-btn {
+        width: 100%; 
+    }
+}
+
+
+@media (max-width: 480px) {
+    .createroom-page .bg-glass {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .createroom-page .bg-glass h1 {
+        font-size: 1.2rem;
+    }
+    
+    .createroom-page .input-box h4 {
+        font-size: 0.9rem; 
+    }
 }
