@@ -19,8 +19,6 @@ $is_logged_in = isset($_SESSION['user_name']);
             align-items: center;
             gap: 15px;
         }
-
-        /* زر البروفايل المحدث */
         .profile-link {
             display: flex;
             align-items: center;
@@ -32,7 +30,7 @@ $is_logged_in = isset($_SESSION['user_name']);
             border-radius: 30px;
             transition: all 0.3s ease;
             border: 1px solid rgba(108, 92, 231, 0.4);
-            font-family: 'Poppins', sans-serif; /* تأكدي من توافر الخط أو استبداله بـ sans-serif */
+            font-family: 'Poppins', sans-serif; 
             font-weight: 500;
         }
 
