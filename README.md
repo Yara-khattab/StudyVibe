@@ -1,4 +1,4 @@
-# StudyVibe 📚✨
+# StudyVibe 📚
 
 ## Overview
 StudyVibe is an interactive web-based study platform designed to solve one of the biggest problems students face: lack of focus, motivation, and consistency while studying.
