@@ -4,13 +4,9 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user_email'])) {
     $email = $_SESSION['user_email'];
-    
-    // استلام البيانات (duration من البرايفت، ونتأكد من أي مسميات أخرى للبابليك)
     $duration = isset($_POST['duration']) ? (int)$_POST['duration'] : 0;
     $room_id = isset($_POST['room_id']) ? (int)$_POST['room_id'] : 0;
     $today = date('Y-m-d');
-
-    // جلب ID المستخدم
     $user_query = $conn->prepare("SELECT id FROM users WHERE email = ?");
     $user_query->bind_param("s", $email);
     $user_query->execute();
@@ -18,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user_email'])) {
     $user_id = $res['id'] ?? null;
 
     if ($user_id && $duration > 0) {
-        // إدخال الجلسة في الجدول
         $stmt = $conn->prepare("INSERT INTO study_sessions (user_id, room_id, duration_minutes, study_date) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("iiis", $user_id, $room_id, $duration, $today);
         
