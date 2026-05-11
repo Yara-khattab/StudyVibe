@@ -178,10 +178,10 @@ These challenges helped improve teamwork, problem-solving, and full-stack develo
 - AI-based productivity suggestions
 - Friend system
 - Notifications and reminders
-- More break mini games
 - Dark/Light mode switching
 - Leaderboards and achievements
-
+- Camera support (video chat / live webcam inside rooms)
+  
 ---
 
 # Teamwork & Collaboration 🤝
