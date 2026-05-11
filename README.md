@@ -232,9 +232,3 @@ By combining focus tools, collaborative rooms, real-time communication, progress
 # Authors 👩‍💻
 
 Developed by Team Devors.
-
----
-
-# License 📄
-
-This project is for educational purposes.
