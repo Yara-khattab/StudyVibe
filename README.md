@@ -231,4 +231,4 @@ By combining focus tools, collaborative rooms, real-time communication, progress
 
 # Authors 👩‍💻
 
-Developed by Team Devors.
+Developed by Team Devoras.
