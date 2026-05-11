@@ -9,15 +9,22 @@ if(!isset($_SESSION['user_name']) || !isset($_SESSION['user_email'])){
 
 $email = $_SESSION['user_email'];
 $user_name = $_SESSION['user_name'];
+$_SESSION['user_id'] = $user_data['id'];
+
+// جلب بيانات المستخدم
 $user_query = $conn->prepare("SELECT id, profile_pic FROM users WHERE email = ?");
 $user_query->bind_param("s", $email);
 $user_query->execute();
 $user_data = $user_query->get_result()->fetch_assoc();
 $user_id = $user_data['id'];
 $user_image = $user_data['profile_pic'];
+
+// حساب إجمالي الساعات
 $res_total = $conn->query("SELECT SUM(duration_minutes) as total FROM study_sessions WHERE user_id = '$user_id'");
 $total_minutes = $res_total->fetch_assoc()['total'] ?? 0;
 $total_hours_display = round($total_minutes / 60, 1);
+
+// منطق الـ Status
 if ($total_hours_display >= 50) {
     $status_text = "Blaze 🔥"; $status_color = "#ff4500"; 
 } elseif ($total_hours_display >= 10) {
@@ -25,6 +32,8 @@ if ($total_hours_display >= 50) {
 } else {
     $status_text = "Spark ✨"; $status_color = "#00d4ff"; 
 }
+
+// حساب الـ Streak
 $streak_query = $conn->query("SELECT DISTINCT study_date FROM study_sessions WHERE user_id = '$user_id' ORDER BY study_date DESC");
 $dates = [];
 while($row = $streak_query->fetch_assoc()) { $dates[] = $row['study_date']; }
@@ -46,6 +55,7 @@ if (count($dates) > 0) {
     }
 }
 
+// الـ Weekly Progress
 $weekly_hours = [];
 $day_labels = [];
 for ($i = 6; $i >= 0; $i--) {
@@ -56,6 +66,10 @@ for ($i = 6; $i >= 0; $i--) {
     $weekly_hours[] = round(($check->fetch_assoc()['daily'] ?? 0) / 60, 1);
     $day_labels[] = $day_name;
 }
+
+// --- الجزء المطلوب تعديله: جلب توزيع المواد (Study Distribution) ---
+// بنعمل LEFT JOIN عشان لو مفيش غرفة برضه الجلسة تظهر، وبنستخدم IFNULL عشان ندي اسم للمادة لو فاضية
+// الاستعلام لربط الجدولين وجلب المواد
 $subject_sql = "SELECT r.topic, SUM(s.duration_minutes) as sub_total 
                 FROM study_sessions s 
                 JOIN rooms r ON s.room_id = r.id 
@@ -68,6 +82,8 @@ $subject_data = [];
 
 while($row = $subject_query->fetch_assoc()){
     if($row['sub_total'] > 0){
+        // هنا بنصلح مشكلة الـ '0' اللي في الداتا بيز عندك
+        // لو التوبيك قيمته '0' أو فاضي، سميه 'General Study' عشان يظهر حلو في التشارت
         $name = ($row['topic'] === '0' || empty($row['topic'])) ? 'General Study' : $row['topic'];
         
         $subject_labels[] = $name;
@@ -99,21 +115,33 @@ while($row = $heatmap_results->fetch_assoc()){
     <link rel="stylesheet" href="CSS/profileCss.css">
     <style>
         .profile-pic-container { position: relative; width: 140px; height: 140px; margin: 15px auto; }
-        .profile-pic-container img { width: 140px !important; height: 140px !important; border-radius: 50%; object-fit: cover; border: 4px solid #6a00ff; box-shadow: 0 0 15px rgba(106, 0, 255, 0.3); background-color: #2c2c2c; }
-        .upload-btn { position: absolute; bottom: 5px; right: 5px; background: linear-gradient(to right, #6a00ff, #d400ff); width: 32px; height: 32px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; cursor: pointer; border: 2px solid #1a1a1a; transition: 0.3s; }
-        .remove-btn { position: absolute; top: 5px; right: 5px; background: #ff416c; width: 28px; height: 28px; border-radius: 50%; display: <?php echo !empty($user_image) ? 'flex' : 'none'; ?>; justify-content: center; align-items: center; color: white; cursor: pointer; border: 2px solid #1a1a1a; font-size: 12px; transition: 0.3s; }
+        .profile-pic-container img { width: 140px !important; height: 140px !important; border-radius: 50%; object-fit: cover; border: 2px solid #6a00ff; box-shadow: 0 0 8px rgba(106, 0, 255, 0.3); background-color: #2c2c2c; }
+        .upload-btn { position: absolute; bottom: 6px; right: 11px; background: linear-gradient(to right, #6a00ff, #d400ff); width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; cursor: pointer;  transition: 0.3s; }
+        .remove-btn { position: absolute; bottom: 35px; right: -10px; background: #ff416c; width: 20px; height: 20px; border-radius: 50%; display: <?php echo !empty($user_image) ? 'flex' : 'none'; ?>; justify-content: center; align-items: center; color: white; cursor: pointer; font-size: 12px; transition: 0.3s; }
         .upload-btn:hover, .remove-btn:hover { transform: scale(1.1); }
         .menu button { padding: 12px; border-radius: 10px; background: linear-gradient(to right, #6a00ff, #d400ff); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; font-size: 16px; font-weight: 500; transition: 0.3s; }
         .menu button:hover { opacity: 0.9; transform: translateY(-2px); }
-.heatmap-grid { 
-    display: grid; 
-  
-    grid-template-rows: repeat(7, 1fr); 
-   
-    grid-auto-flow: column; 
-    gap: 3px; 
-    padding: 10px 0; 
-    overflow-x: auto; 
+.heatmap-grid {
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
+    grid-auto-flow: column;
+    gap: 3px;
+    padding: 10px 0;
+    overflow-x: auto;
+    background: transparent;
+}
+.heatmap-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.heatmap-grid::-webkit-scrollbar-thumb {
+    background:#252d3a;
+    
+    border-radius: 10px;
+}
+
+.heatmap-grid::-webkit-scrollbar-track {
+    background: transparent;
 }
         .day { width: 23px; height: 23px; border-radius: 2px; border: 1px solid rgba(255, 255, 255, 0.03); }
         .level-0 { background-color: #161b22; }
@@ -205,6 +233,8 @@ new Chart(document.getElementById('weeklyChart'), {
         plugins: { legend: { display: false } }
     }
 });
+
+// --- الدونات تشارت (التي طلبتم تعديلها) ---
 const hasData = <?php echo (array_sum($subject_data) > 0) ? 'true' : 'false'; ?>;
 new Chart(document.getElementById('distributionChart'), {
     type: 'doughnut',
@@ -240,10 +270,16 @@ new Chart(document.getElementById('distributionChart'), {
         } 
     }
 });
+
+// Heatmap logic
+// Heatmap logic - الرأسي (GitHub Style)
 const grid = document.getElementById('heatmapGrid');
 const hData = <?php echo json_encode($heatmap_data); ?>;
-const totalDaysToShow = 126; 
-    for (let i = totalDaysToShow - 1; i >= 0; i--) {
+
+// عشان الترتيب الرأسي يطلع صح، لازم نحسب عدد الأيام بحيث نكمل الأسبوع الأخير
+const totalDaysToShow = 126; // رقم يقبل القسمة على 7 (18 أسبوع)
+
+for (let i = totalDaysToShow - 1; i >= 0; i--) {
     const d = new Date(); 
     d.setDate(d.getDate() - i);
     const dateStr = d.toISOString().split('T')[0];
@@ -257,9 +293,12 @@ const totalDaysToShow = 126;
     else if (m > 30) box.classList.add('level-2');
     else if (m > 0) box.classList.add('level-1');
     else box.classList.add('level-0');
+    
+    // إضافة اليوم كـ title عشان يظهر لما تقفي عليه بالماوس
     box.title = `${dateStr}: ${m} mins`;
     grid.appendChild(box);
 }
+// Profile Pic Functions
 document.getElementById('imageUpload').addEventListener('change', function() {
     let formData = new FormData();
     formData.append('profile_pic', this.files[0]);
