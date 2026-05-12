@@ -46,7 +46,7 @@
   </div>
   <script>
 function returnToRoom() {
-    // هنستخدم الكود اللي جاي من الـ URL عشان نرجع لنفس الأوضة
+
     const urlParams = new URLSearchParams(window.location.search);
     const roomCode = urlParams.get('code');
     if (roomCode) {
