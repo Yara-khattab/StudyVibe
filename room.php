@@ -165,7 +165,6 @@ document.querySelector('.back-study-btn').addEventListener('click', (e) => {
     closeBreak();
 });
 
-// 3. إنهاء السيشن وحفظ الوقت
 function finishSession() {
     const minutesSpent = Math.floor((totalDuration - timeLeft) / 60);
     localStorage.removeItem('studyTimeLeft_' + roomCode);
@@ -227,6 +226,11 @@ document.getElementById('send-btn').addEventListener('click', () => {
         }).then(() => { msgInput.value = ""; loadMessages(); });
     }
 });
+document.getElementById('msg-input').addEventListener('keydown', function(e){
+  if(e.key === "Enter"){
+        e.preventDefault();
+        document.getElementById('send-btn').click();
+    }
 </script>
 </body>
 </html>
