@@ -2,7 +2,6 @@
 include "db.php";
 session_start();
 
-// 1. التحقق من الكود
 $room_code = $_GET['code'] ?? $_SESSION['current_room_code'] ?? null;
 
 if (!$room_code || !isset($_SESSION['user_email'])) {
@@ -12,7 +11,6 @@ if (!$room_code || !isset($_SESSION['user_email'])) {
 
 $email = $_SESSION['user_email'];
 
-// 2. جلب بيانات الغرفة
 $sql = "SELECT * FROM rooms WHERE room_code = ? AND privacy = 'private' LIMIT 1";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $room_code);
@@ -24,7 +22,7 @@ if (!$room) {
     exit();
 }
 
-// 3. جلب بيانات المستخدم
+
 $user_query = $conn->prepare("SELECT id, user_name FROM users WHERE email = ?");
 $user_query->bind_param("s", $email);
 $user_query->execute();
@@ -44,7 +42,7 @@ $_SESSION['current_room_code'] = $room_code;
     <link rel="stylesheet" href="CSS/private_room.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-    /* تنسيق التاسك زي الجوين */
+
 .focus-item {
     display: flex;
     align-items: center;
@@ -59,7 +57,6 @@ $_SESSION['current_room_code'] = $room_code;
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* ستايل نص التاسك */
 .task-text {
     flex-grow: 1;
     color: white;
@@ -166,7 +163,7 @@ let timeLeft = (rawTime && !isNaN(rawTime)) ? parseInt(rawTime) : totalStudyMins
 let breakCounter = 0; 
 const breakThreshold = breakEveryMins * 60; 
 function goToRoom() {
-    // بدل ما نلف وندور على localStorage، نستخدم الـ roomCode اللي معانا أصلاً
+
     if (roomCode && roomCode !== "null" && roomCode !== "") {
         window.location.href = `private_room.php?code=${roomCode}`;
     } else {
@@ -235,7 +232,6 @@ function clearStorageAndLeave() {
     const tasksList = document.getElementById('tasks-list');
 const addTaskBtn = document.getElementById('add-task-btn');
 
-    // تحميل التاسكات أول ما الصفحة تفتح
     document.addEventListener('DOMContentLoaded', loadTasks);
 
     function loadTasks() {
@@ -243,8 +239,6 @@ const addTaskBtn = document.getElementById('add-task-btn');
         tasksList.innerHTML = '';
         savedTasks.forEach(task => createTaskElement(task.text, task.completed));
     }
-
-    // لما نضغط على زرار الزائد
     addTaskBtn.onclick = function() {
         const taskName = prompt("What is your focus task for today?");
         
@@ -254,12 +248,11 @@ const addTaskBtn = document.getElementById('add-task-btn');
         }
     };
 
-    // دالة إنشاء عنصر التاسك في الـ DOM
 function createTaskElement(text, completed = false) {
     const label = document.createElement('label');
     label.className = 'focus-item';
     
-    // الهيكلة دي مطابقة تماماً لسكشن الجوين اللي بعتيه
+    
     label.innerHTML = `
         <div style="display: flex; align-items: center; gap: 10px; width: 100%;">
             <input type="checkbox" ${completed ? 'checked' : ''} onchange="toggleTask(this)" style="cursor:pointer;">
@@ -272,19 +265,19 @@ function createTaskElement(text, completed = false) {
     tasksList.appendChild(label);
 }
 
-// دالة لتحسين شكل النص عند الضغط على الـ checkbox
+
 function toggleTask(checkbox) {
     const taskText = checkbox.parentElement.querySelector('.task-text');
-    saveTasks(); // حفظ الحالة الجديدة
+    saveTasks(); 
 }
 
-// دالة الحذف (تأكدي إنها موجودة عندك)
+
 function removeTask(element) {
     element.closest('.focus-item').remove();
     saveTasks();
 }
 
-    // دالة حفظ التاسكات في المتصفح
+    
     function saveTasks() {
         const tasks = [];
         document.querySelectorAll('.focus-item').forEach(item => {
