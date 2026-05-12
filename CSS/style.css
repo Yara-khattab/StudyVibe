@@ -9,22 +9,27 @@
 }
 .register_page,.login_page{
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background: url(../images/background_signup_login.png) no-repeat center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
+    padding: 20px;
 }
 
 .register_form,.login_form{
     background:rgba(15, 23, 42, 0.8);
     padding: 40px;
-    width: 350px;
+    width: 100%; 
+    max-width: 400px;
     border-radius: 15px;
     text-align: center;
     color: white;
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    background: rgba(15, 23, 42, 0.85); 
+    padding: 40px;
+    backdrop-filter: blur(10px);
 }
 
 .register_page .logo,.login_page .logo{
@@ -111,7 +116,19 @@
 }
 
 
+@media (max-width: 480px) {
+    .register_form, .login_form {
+        padding: 30px 20px; 
+    }
 
+    .register_page .logo, .login_page .logo {
+        font-size: 24px; 
+    }
+
+    .register_page form input, .login_page form input {
+        font-size: 14px; 
+    }
+}
 
 
 
@@ -631,76 +648,86 @@ transition: all 0.3s ease;
     font-size: 18px;
 }
 
-
-.home-page{
+.home-page {
     width: 100%;
     min-height: 100vh;
-    font-family: Arial,sans-serif;
-    color:white;
+    font-family: Arial, sans-serif;
+    color: white;
     background: url(../images/Home\ background.jpeg) no-repeat center/cover;
 }
-.container{
+
+.container {
     padding: 0 40px;
 }
+
 .home-page .nav-bar {
-    display: block !important; 
+    display: block !important;
     padding: 10px 40px;
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
-.home-page .logo{
+
+.home-page .logo {
     font-size: 28px;
     font-weight: bold;
 }
-.home-page .nav-buttons{
+
+.home-page .nav-buttons {
     display: flex;
     gap: 15px;
 }
-.home-page .register-btn{
-   border: 1px solid var(--violet-color);
-}
-.home-page .login-btn,.home-page .register-btn{
+
+.home-page .login-btn,
+.home-page .register-btn {
     border-radius: 8px;
     padding: 10px 22px;
     background: transparent;
     color: white;
     cursor: pointer;
-    transition: 0.3s;
     text-decoration: none;
     font-size: 18px;
-    transition: all 1s ease;
+    transition: all 0.3s ease;
 }
 
-.home-page .login-btn:hover,.home-page .register-btn:hover{
-   background: var(--main-linear-gradient);
+.home-page .register-btn {
+    border: 1px solid var(--violet-color);
 }
-.home-page .hero{
+
+.home-page .login-btn:hover,
+.home-page .register-btn:hover {
+    background: var(--main-linear-gradient);
+}
+
+.home-page .hero {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 80px;
     gap: 60px;
 }
-.home-page .hero-text{
+
+.home-page .hero-text {
     text-align: left;
 }
-.home-page .hero-text h1{
+
+.home-page .hero-text h1 {
     max-width: 620px;
     font-size: 45px;
     line-height: 1.2;
-    margin-bottom: 5px;
-    margin-top: 60px;
+    margin: 60px 0 5px;
 }
-.home-page .hero-text p{
+
+.home-page .hero-text p {
     max-width: 500px;
     font-size: 25px;
-    color:#9CA3AF;
+    color: #9CA3AF;
     margin-bottom: 55px;
 }
-.home-page .start-btn{
+
+.home-page .start-btn {
     padding: 14px 25px;
     border: none;
     border-radius: 10px;
@@ -710,143 +737,168 @@ transition: all 0.3s ease;
     font-weight: bold;
     cursor: pointer;
     transition: 0.4s;
-    box-shadow: 0 0 20px rgba(168,85,247,0.4);
-    margin-left: 150px;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
     text-decoration: none;
+    display: inline-block;
 }
-.home-page .start-btn:hover{
+
+.home-page .start-btn:hover {
     opacity: 0.7;
 }
-.home-page .features{
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 170px;
-    align-items: center;
+
+.home-page .features {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 15px !important;
+    margin-top: 150px !important;
+    flex-wrap: nowrap !important;
 }
-.home-page .feature-box{ 
+
+.home-page .features .col-auto {
+    width: auto !important;
+    padding: 0 !important;
+}
+
+.home-page .feature-box {
     color: #a8abaf;
-    font-size: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
 }
-.home-page .feature-box i{
-    font-size: 17px;
-    color:#a8abaf;
-    margin-right: 10px;
+
+.home-page .feature-box h3 {
+    font-size: 16px !important;
+    margin: 0 !important;
+    font-weight: normal !important;
+}
+
+.home-page .feature-box i {
+    color: #a8abaf;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 18px !important;
+    margin-right: 8px !important;
 }
-.vertical-divider{
-    width: 2px;
-    height: 30px;
+
+.vertical-divider {
     background: #a8abaf;
-}
-
-
-@media (max-width: 767px) {
-    
-    .nav-bar .container-fluid {
-        justify-content: center;
-        text-align: center;
-    }
-
-    .navbar-collapse {
-        margin-top: 20px;
-    }
-
-  
-    .home-page .nav-buttons {
-        flex-direction: column; 
-        align-items: center;
-        gap: 10px;
-        width: 100%;
-    }
-
-    .home-page .login-btn, .home-page .register-btn {
-        width: 100%; 
-        max-width: 200px;
-        margin: 0 auto;
-    }
-
-    
-    .home-page .hero {
-        margin-top: 40px;
-        justify-content: center; 
-    }
-
-    .home-page .hero-text {
-        text-align: center; 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .home-page .hero-text h1, .home-page .hero-text p {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
- 
-    .home-page .start-btn {
-        margin-left: 0 !important;
-        margin-top: 20px;
-    }
-
-   
-    .home-page .features {
-        margin-top: 60px;
-        flex-direction: column;
-        align-items: center;
-    }
+    width: 1px !important;
+    height: 15px !important;
 }
 
 @media (min-width: 768px) {
     .navbar-collapse {
         display: flex !important;
-        justify-content: flex-end; 
+        flex-basis: auto;
     }
+
     .nav-buttons {
-        display: flex !important;
-        flex-direction: row !important;
-        gap: 15px;
+        margin-left: auto !important;
+    }
+
+    .home-page .start-btn {
+        margin-left: 0;
     }
 }
 
+@media (max-width: 992px) {
+    .home-page .feature-box h3 {
+        font-size: 14px !important;
+    }
+
+    .home-page .feature-box i {
+        font-size: 16px !important;
+    }
+}
 
 @media (max-width: 767px) {
-    .navbar-collapse {
-        background: rgba(0, 0, 0, 0.8); 
-        border-radius: 10px;
-        margin-top: 15px;
-        padding: 20px;
+    .home-page .nav-bar {
+        padding: 10px 5%;
     }
-    
-    .nav-buttons {
-        display: flex !important;
-        flex-direction: column !important; 
-        align-items: center;
+
+    .nav-bar .container-fluid {
+        justify-content: center;
+        text-align: center;
+        flex-wrap: wrap;
+    }
+
+    .navbar-collapse {
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 10px;
+        margin-top: 10px;
+        padding: 20px;
         width: 100%;
     }
 
-    .home-page .login-btn, .home-page .register-btn {
-        width: 80%; 
-        text-align: center;
+    .nav-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
     }
-}
 
+    .home-page .login-btn,
+    .home-page .register-btn {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+    }
 
+    .home-page .hero {
+        margin-top: 100px !important;
+        flex-direction: column;
+        text-align: center;
+        gap: 30px !important;
+    }
 
-.join-room{
-    height: 100vh;
-    background:url("../images/background_signup_login.png") center/cover no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial,sans-serif;
-    position: relative;
+    .home-page .hero-text {
+        text-align: center !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .home-page .hero-text h1 {
+        font-size: 32px;
+        margin: 20px auto;
+    }
+
+    .home-page .hero-text p {
+        font-size: 18px;
+        margin: 0 auto 30px;
+    }
+
+    .home-page .start-btn {
+        width: fit-content !important;
+        padding: 12px 30px !important;
+        font-size: 16px !important;
+        margin-top: 50px !important;
+    }
+
+    .home-page .features {
+        margin-top: 60px !important;
+        gap: 8px !important;
+        padding: 0 10px !important;
+    }
+
+    .home-page .feature-box,
+    .home-page .feature-box h3 {
+        font-size: 11px !important;
+    }
+
+    .home-page .feature-box i {
+        font-size: 12px !important;
+        margin-right: 4px !important;
+    }
+
+    .vertical-divider {
+        height: 12px !important;
+        background: rgba(168, 171, 175, 0.5) !important;
+    }
 }
 
 .join-room .join-container {
