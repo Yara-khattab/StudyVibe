@@ -900,396 +900,198 @@ transition: all 0.3s ease;
         background: rgba(168, 171, 175, 0.5) !important;
     }
 }
-
-.join-room .join-container {
-    width: 85%;
-    height: 80%;
-    background: rgba(255, 255, 255, 0.04);
-    border-radius: 20px;
-    display: flex;
-    padding: 20px;
-    gap: 20px;
-    overflow-y: auto; 
-    overflow-x: hidden; 
+:root {
+    --main-linear-gradient: linear-gradient(to right, #6a00ff, #d400ff);
 }
 
-.join-room .join-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.join-room .join-container::-webkit-scrollbar-track {
-    background: transparent; 
-}
-
-.join-room .join-container::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-}
-
-.join-room .join-container::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.4);
-}
-
-.join-room .join-container .left-panel{
-    width: 30%;
-    background: #191f37;
-    border-radius: 15px;
-    padding: 30px;
-    color: white;
-    max-height: fit-content;
-    margin-top:30px
-}
-.join-room .join-container .hello-join{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.join-room .join-container .avatar{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #2b335e;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 40px;
-    margin-left: 15px;
-    
-}
-.join-room .join-container .underline{
-    width: 200px;
-    height: 3px;
-    background: white;
-    margin-top:10px ;
-    margin-left: 25px; 
-}
-.join-room .focus-box{
-    display: flex;
-    flex-direction: column;
-   margin-top: 30px;
-   margin-left: 20px;
-   
-}
-
-.join-room .focus-box .focus-item{
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 10px;
-    margin-top: 15px;
-    border-radius: 8px; 
-    height: 40px; 
-    width: 220px;
-}
-.join-room .focus-box .focus-item input{
-    display: none;
-}
-.join-room .focus-box .focus-item .checkmark{
-    width: 20px;
-    height: 20px;
-    background: #9ca3af;
-    border-radius: 4px;
-    position: relative;
-    transition: 0.3s;
-}
-.join-room .focus-box .focus-item input:checked + .checkmark{
-    background: #22c55e;
-}
-.join-room .focus-box .focus-item input:checked + .checkmark::after{
-    content: "✔";
-    position: absolute;
-    color: white;
-    font-size: 14px;
-    left: 5px;
-    top: 1px;
-}
-
-.join-room .right-panel{
-    width: 70%;
-}
-.join-room .right-panel .title{
-    color: white;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-}
-.join-room .room-grid{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 15px;
-}
-.join-room .room-card{
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    height: 180px;
-    width: 200px;
-    justify-content: center;
-    margin-left: 20px;
-}
-.join-room .room-card button{
-    background: var(--main-linear-gradient);
-    border: none;
-    padding: 8px 15px;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-}
-.focus-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-.add-task-btn {
-    background: none;
-    border: 1px solid #ffffff55;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    padding: 2px 8px;
-    transition: 0.3s;
-}
-.add-task-btn:hover {
-     background: #3b82f6;
-     border-color: #3b82f6;
-}
-.focus-item input[type="text"] {
-    background: transparent;
-    border: none;
-    color: white;
-    outline: none;
-    width: 100%;
-    font-size: 14px;
-    font-family: inherit;
-}
-.focus-item {
-   display: flex;
-   align-items: center;
-   position: relative;
-   margin-bottom: 10px;
-   background: rgba(255, 255, 255, 0.05);
-   padding: 8px;
-   border-radius: 8px;
-}
-.remove-task {
-  color: #ff4d4d;
-  cursor: pointer;
-  font-size: 12px;
-  margin-left: 5px;
-  opacity: 0;
- transition: 0.3s;
-}
-.focus-item:hover .remove-task {
-    opacity: 1;
-}
-
-#tasks-list {
-    max-height: 200px; 
-    overflow-y: auto; 
-    padding-right: 5px; 
-}
-
-#tasks-list::-webkit-scrollbar {
-    width: 5px;
-}
-#tasks-list::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-}
-#tasks-list::-webkit-scrollbar-thumb {
-    background: #3b82f6; 
-    border-radius: 10px;
-}
-#tasks-list::-webkit-scrollbar-thumb:hover {
-    background: #2563eb;
-}
-
-
-
-
-/* ROOMS PAGE */
-.rooms-page{
-    width: 100%;
-    height: 100vh;
-    background: url("../images/background_signup_login.png") center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    font-family: Arial,sans-serif;
-}
-
-.rooms-sidebar{
-    width: 18%;
-    height: 100%;
-    background-color: rgba(15, 23, 42, 0.5);
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    
-}
-
-.logo-sidebar{ 
-    padding: 25px;
-    color: white;
-    font-size: 25px;
-    font-weight: bold;
-    font-family: Arial,sans-serif;
-    margin-top: 20px;
-    margin-left: 10px;
-
-}
-.logo-sidebar i {
-    background: linear-gradient(to right, #6a00ff, #d400ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.rooms-sidebar-menu{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-}
-.rooms-sidebar-menu ul{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    list-style: none;
+* {
+    box-sizing: border-box;
+    margin: 0;
     padding: 0;
-    gap: 25px;
 }
 
-.rooms-sidebar-menu li:last-child{
-    margin-top: auto;
-}
-
-.btn{
-    width: 100%;
-    height: 50px;
-    padding: 15px 35px;
-    border: none;
-    border-radius: 15px;
-    background: linear-gradient(to right,#6a00ff, #d400ff);
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.btn i{
-    margin-right: 10px;
-    color: white;
-}
-.btn:hover{
-    opacity: 0.7;
-    transition: 0.7s;
-}
-
-.rooms-body{
-    width: 82%;
-    height: 90%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto auto;
-    padding: 60px;
-    gap: 30px;
-    color: white;
-}
-
-.item{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.item h1{
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Georgia, serif;
-}  
-
-.item button{
-    width: 50%;
-    height: 50px;
-    margin-right: 25%;
-    font-size:20px;
-    font-family:bold;
-}
-
-.rooms-body .item:nth-child(1){
-    grid-column: 1 / 3;
-    text-align: center;
-}
-
-.rooms-body .item:nth-child(2),
-.rooms-body .item:nth-child(3){
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.rooms-body .item:nth-child(4),
-.rooms-body .item:nth-child(5){
-    font-size: 25px;
-    line-height: 1.6;
-    padding: 0 40px;
-    margin-left: 5%;
- 
-}
-.item p{
-    margin-top:-30px
-}
-.rooms-footer{
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    position: absolute;
-    bottom: 20px;
-    left: 20%;
-    color: #a8abaf;
-}
-
-/* create - room - page */
-
-.createroom-page {
-    width: 100%;
+.join-room {
     height: 100vh;
     background: url("../images/background_signup_login.png") center/cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
+    position: relative;
 }
 
-.createroom-page .bg-glass {
-    background: rgba(15, 23, 42, 0.644);
+.join-room .join-container {
+    width: 85%;
+    height: 80%;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    display: flex;
     padding: 40px;
-    width: 70%;
-    height: 90%;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.join-room .join-container .left-panel {
+    width: 30%;
+    background: #191f37;
     border-radius: 15px;
+    padding: 30px;
+    color: white;
+    height: fit-content;
+    margin-top: 62px;
+}
+
+.join-room .join-container .hello-join {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.join-room .join-container .avatar {
+    font-size: 35px;
+    color: white;
+}
+
+.join-room .join-container .underline {
+    width: 80%;
+    height: 2px;
+    background: white;
+    margin: 15px auto;
+}
+
+.focus-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.focus-header h3 i {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+.add-task-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 5px;
+    padding: 2px 8px;
+    cursor: pointer;
+}
+
+#tasks-list {
+    max-height: 500px;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+
+#tasks-list.active {
+    max-height: 0;
+}
+
+.join-room .focus-box .focus-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.join-room .focus-box .focus-item input {
+    display: none;
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    position: relative;
+}
+
+.join-room .focus-box .focus-item input:checked + .checkmark {
+    background: #22c55e;
+}
+
+.join-room .focus-box .focus-item input:checked + .checkmark::after {
+    content: "✔";
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    left: 4px;
+    top: 0;
+}
+
+.join-room .right-panel {
+    width: 70%;
+}
+
+.join-room .right-panel .title {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.join-room .room-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.join-room .room-card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    padding: 25px;
     text-align: center;
     color: white;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    height: 200px;
+    justify-content: center;
 }
-.createroom-page .bg-glass i {
-    background: linear-gradient(to right,#6a00ff, #d400ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
+.join-room .room-card button {
+    background: var(--main-linear-gradient);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .join-container {
+        flex-direction: column;
+        height: 90vh;
+    }
+    .left-panel, .right-panel {
+        width: 100% !important;
+    }
+    .room-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.join-container::-webkit-scrollbar {
+    width: 6px;
+}
+.join-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
 }

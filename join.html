@@ -3,90 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>join room</title>
+    <title>Join Room</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/all.css">
 </head>
 <body>
     <section class="join-room">
         <div class="join-container">
             <div class="left-panel">
                 <div class="hello-join">
-                    <div>
-                        <h2>Hello <span id="username">Roqia!</span></h2>
-                    </div>
-                    <div class="avatar">
-                        <i class="fa-solid fa-circle-user"></i>
-                    </div>
+                    <h2>Hello Roqia!</h2>
+                    <div class="avatar"><i class="fa-solid fa-circle-user"></i></div>
                 </div>
-                <p class="underline"></p>
+                <div class="underline"></div>
+                
                 <div class="focus-box">
-                    <h3>Today’s Focus</h3>
-                    <label class="focus-item">
-                        <input type="checkbox">
-                        <span class="checkmark"></span>OOP Task
-                    </label>
-                     <label class="focus-item">
-                        <input type="checkbox">
-                        <span class="checkmark"></span>Data Structures
-                    </label>
-                    <label class="focus-item">
-                        <input type="checkbox">
-                        <span class="checkmark"></span>OS Lab</label>
-                    <label class="focus-item">
-                        <input type="checkbox">
-                        <span class="checkmark"></span>Physics</label>
+                    <div class="focus-header" onclick="toggleFocus()">
+                        <h3>Today’s Focus <i class="fas fa-chevron-down" id="arrow"></i></h3>
+                        <button class="add-task-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                    
+                    <div id="tasks-list">
+                        <label class="focus-item">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span>OOP Task</span>
+                        </label>
+                        <label class="focus-item">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span>Data Structures</span>
+                        </label>
+                        <label class="focus-item">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span>OS Lab</span>
+                        </label>
+                        <label class="focus-item">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span>Physics</span>
+                        </label>
+                    </div>
                 </div>
             </div>
+
             <div class="right-panel">
-                <h2 class="title">Featured Open Room</h2>
+                <h1 class="title">Featured Open Room</h1>
                 <div class="room-grid">
                     <div class="room-card">
                         <h4>Graphic Design</h4>
-                         <div>
-                            <i class="fa-solid fa-users"></i>
-                        </div>
+                        <i class="fa-solid fa-users"></i>
                         <button>Join Now</button>
                     </div>
                     <div class="room-card">
-                        <h4>Advanced Calculas</h4>
-                         <div>
-                            <i class="fa-solid fa-user"></i>
-                        </div>
+                        <h4>Advanced Calculus</h4>
+                        <i class="fa-solid fa-user"></i>
                         <button>Join Now</button>
                     </div>
-                     <div class="room-card">
+                    <div class="room-card">
                         <h4>UI/UX Design</h4>
-                         <div>
-                            <i class="fa-solid fa-users"></i>
-                        </div>
+                        <i class="fa-solid fa-users"></i>
                         <button>Join Now</button>
                     </div>
                     <div class="room-card">
                         <h4>Operating System</h4>
-                         <div>
-                            <i class="fa-solid fa-user"></i>
-                        </div>
+                        <i class="fa-solid fa-user"></i>
                         <button>Join Now</button>
                     </div>
                     <div class="room-card">
                         <h4>Physics 2</h4>
-                         <div>
-                            <i class="fa-solid fa-users"></i>
-                        </div>
+                        <i class="fa-solid fa-users"></i>
                         <button>Join Now</button>
                     </div>
                     <div class="room-card">
                         <h4>Java OOP</h4>
-                        <div>
-                            <i class="fa-solid fa-users"></i>
-                        </div>
+                        <i class="fa-solid fa-users"></i>
                         <button>Join Now</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
+    <script>
+        function toggleFocus() {
+            const list = document.getElementById('tasks-list');
+            const arrow = document.getElementById('arrow');
+            list.classList.toggle('active');
+            arrow.classList.toggle('rotate');
+        }
+    </script>
 </body>
 </html>
