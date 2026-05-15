@@ -186,7 +186,7 @@ These challenges helped improve teamwork, problem-solving, and full-stack develo
 
 # Teamwork & Collaboration 🤝
 
-StudyVibe was developed collaboratively by Team Devors.
+StudyVibe was developed collaboratively by Team Devoras.
 
 The project involved:
 - Frontend development
